@@ -56,6 +56,17 @@ test('handles new lines between numbers', () => {
   expect(screen.getByText('Result: 6')).toBeInTheDocument();
 });
 
+test('handles different delimiters', () => {
+  render(<StringCalculator />);
+  const input = screen.getByPlaceholderText('Enter numbers');
+  const button = screen.getByText('Add');
+
+  fireEvent.change(input, { target: { value: '//;\n1;2' } });
+  fireEvent.click(button);
+
+  expect(screen.getByText('Result: 3')).toBeInTheDocument();
+});
+
 
 
   

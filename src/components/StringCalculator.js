@@ -6,10 +6,18 @@ const StringCalculator = () => {
 
   const add = (numbers) => {
     if (!numbers) return 0;
-    numbers = numbers.replace(/\n/g, ',');
-    const numArray = numbers.split(',').map(num => parseInt(num, 10));
+  
+    let delimiter = ',';
+    if (numbers.startsWith('//')) {
+      const parts = numbers.split('\n');
+      delimiter = parts[0].substring(2);
+      numbers = parts[1];
+    }
+  
+    numbers = numbers.replace(/\n/g, delimiter);
+    const numArray = numbers.split(delimiter).map(num => parseInt(num, 10));
     return numArray.reduce((sum, num) => sum + num, 0);
-  }; 
+  };   
 
   const handleSubmit = (e) => {
     e.preventDefault();
