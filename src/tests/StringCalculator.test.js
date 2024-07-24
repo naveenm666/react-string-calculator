@@ -45,5 +45,17 @@ test('handles multiple numbers', () => {
   expect(screen.getByText('Result: 6')).toBeInTheDocument();
 });
 
+test('handles new lines between numbers', () => {
+  render(<StringCalculator />);
+  const input = screen.getByPlaceholderText('Enter numbers');
+  const button = screen.getByText('Add');
+
+  fireEvent.change(input, { target: { value: '1\n2,3' } });
+  fireEvent.click(button);
+
+  expect(screen.getByText('Result: 6')).toBeInTheDocument();
+});
+
+
 
   
