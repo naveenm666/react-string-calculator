@@ -34,4 +34,16 @@ test('handles two numbers', () => {
   expect(screen.getByText('Result: 3')).toBeInTheDocument();
 });
 
+test('handles multiple numbers', () => {
+  render(<StringCalculator />);
+  const input = screen.getByPlaceholderText('Enter numbers');
+  const button = screen.getByText('Add');
+
+  fireEvent.change(input, { target: { value: '1,2,3' } });
+  fireEvent.click(button);
+
+  expect(screen.getByText('Result: 6')).toBeInTheDocument();
+});
+
+
   
