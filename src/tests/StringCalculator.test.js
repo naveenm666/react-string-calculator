@@ -77,7 +77,3 @@ test('throws error for negative numbers', () => {
 
   expect(screen.getByText(/Error: negative numbers not allowed/)).toBeInTheDocument();
 });
-
-
-
-  
