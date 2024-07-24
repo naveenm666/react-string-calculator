@@ -67,6 +67,17 @@ test('handles different delimiters', () => {
   expect(screen.getByText('Result: 3')).toBeInTheDocument();
 });
 
+test('throws error for negative numbers', () => {
+  render(<StringCalculator />);
+  const input = screen.getByPlaceholderText('Enter numbers');
+  const button = screen.getByText('Add');
+
+  fireEvent.change(input, { target: { value: '1,-2,3' } });
+  fireEvent.click(button);
+
+  expect(screen.getByText(/Error: negative numbers not allowed/)).toBeInTheDocument();
+});
+
 
 
   
